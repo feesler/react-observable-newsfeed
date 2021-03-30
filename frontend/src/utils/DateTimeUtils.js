@@ -2,6 +2,8 @@ const MS_IN_SECOND = 1000;
 const MS_IN_MINUTE = 60 * MS_IN_SECOND;
 const MS_IN_HOUR = 60 * MS_IN_MINUTE;
 const MS_IN_DAY = 24 * MS_IN_HOUR;
+const MS_IN_MONTH = 30 * MS_IN_DAY;
+const MS_IN_YEAR = 365 * MS_IN_DAY;
 
 function formatPlural(num, single, few, several) {
   const dozens = num % 100;
@@ -63,8 +65,22 @@ export function formatTimePretty(date) {
     return `${hours} ${hoursPlural} назад`;
   }
 
-  const days = Math.floor(diff / MS_IN_DAY);
-  const daysPlural = formatPlural(days, 'день', 'дня', 'дней');
+  if (diff < MS_IN_MONTH) {
+    const days = Math.floor(diff / MS_IN_DAY);
+    const daysPlural = formatPlural(days, 'день', 'дня', 'дней');
 
-  return `${days} ${daysPlural} назад`;
+    return `${days} ${daysPlural} назад`;
+  }
+
+  if (diff < MS_IN_YEAR) {
+    const months = Math.floor(diff / MS_IN_MONTH);
+    const monthsPlural = formatPlural(months, 'месяц', 'месяца', 'месяцев');
+
+    return `${months} ${monthsPlural} назад`;
+  }
+
+  const years = Math.floor(diff / MS_IN_YEAR);
+  const yearsPlural = formatPlural(years, 'год', 'года', 'лет');
+
+  return `${years} ${yearsPlural} назад`;
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes, { useEffect } from 'prop-types';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { readNews } from '../store/newsFeedSlice';
 import NewsCard from './NewsCard';
@@ -10,15 +10,15 @@ function NewsFeed(props) {
 
   useEffect(() => {
     dispatch(readNews());
-  }, [])
+  }, []);
 
   return (
     <div className="feed">
       { items && items.map((item) =>
-        <NewsCard {...item} />
+        <NewsCard key={item.id} item={item} />
       )}
     </div>
-  )
+  );
 }
 
 NewsFeed.propTypes = {

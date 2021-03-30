@@ -6,6 +6,9 @@ import {
   debounceTime,
   switchMap,
   catchError,
+  retryWhen,
+  delay,
+  take,
   filter,
 } from 'rxjs/operators';
 import { readNews, readNewsSuccess, readNewsFailure } from '../store/newsFeedSlice';
@@ -18,7 +21,8 @@ export const requestNewsEpic = (action$) => action$.pipe(
   switchMap(() =>
     ajax.getJSON(newsUrl).pipe(
       map(o => readNewsSuccess(o)),
-      catchError(e => of(readNewsFailure(e))),
+      //catchError(e => of(readNewsFailure(e))),
+      retryWhen(errors => errors.pipe(delay(1000), take(10))),
     )
   )
 );

@@ -8,6 +8,19 @@ body {
   color: #000000;
 }
 
+.dark {
+  background-color: #202020;
+  color: #ececec;
+}
+
+.dark .feed {
+  background-color: #2c2c2c;
+}
+
+.dark .feed-item {
+  background-color: #313131;
+}
+
 :focus {
   outline: none;
 }
@@ -31,4 +44,49 @@ body {
   background-color: #f5f5f5;
   border: 1px solid #dcdee1;
   border-radius: 0.25rem;
+}
+
+.post {
+  display: flex;
+  flex-flow: column nowrap;
+  text-decoration: none;
+  flex: 1 1 auto;
+  padding: 0.75rem;
+}
+
+.post__header {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 0.25rem;
+}
+
+.post__avatar {
+  display: block;
+  margin-right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #575757;
+}
+
+.post__title {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.post__user {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4469ae;
+}
+
+.post__time {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: #888888;
+}
+
+.post__content {
+  font-size: 1.25rem;
+  font-weight: normal;
 }

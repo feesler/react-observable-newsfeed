@@ -1,20 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-/** Request news data */
-/*
-export const readNews = createAsyncThunk(
-  'readNews',
-  async (_, { dispatch }) => {
-    const result = await dispatch(authRequest({ url: newsUrl }));
-    if (!result.payload || !result.payload.data) {
-      throw new Error((result.error) ? result.error.message : 'Unknown error');
-    }
-
-    return result.payload.data;
-  },
-);
-*/
-
 const initialState = {
   items: [],
   loading: false,
@@ -33,7 +18,7 @@ const newsFeedSlice = createSlice({
     readNewsSuccess: (state, action) => ({
       ...state,
       loading: false,
-      items: [...state.items, ...action.payload.items],
+      items: [...state.items, ...action.payload],
     }),
     readNewsFailure: (state, action) => ({
       ...state,
