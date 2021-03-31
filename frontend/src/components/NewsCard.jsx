@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatTimePretty } from '../utils/DateTimeUtils';
+import { formatTime } from '../utils/DateTimeUtils';
 import { decodeXML } from 'entities';
 import { ReactComponent as LikesIcon } from '../assets/likes-icon.svg';
 import { ReactComponent as CommentsIcon } from '../assets/comments-icon.svg';
@@ -12,7 +12,7 @@ import IconCounter from './IconCounter';
 function NewsCard(props) {
   const { item } = props;
   const userName = 'User name';
-  const timeFmt = formatTimePretty(item.date * 1000);
+  const timeFmt = formatTime(item.date * 1000);
 
   const decodedContent = decodeXML(item.text);
 

@@ -21,22 +21,26 @@ function formatPlural(num, single, few, several) {
   return several;
 }
 
-export function formatTimePretty(date) {
-  let time;
-
+function getDateTime(date) {
   if (typeof date === 'string') {
-    time = Date.parse(date);
+    const time = Date.parse(date);
     if (Number.isNaN(time)) {
       throw new TypeError('Invalid date string');
     }
-  } else if (typeof date === 'number') {
-    time = date;
-  } else if (date instanceof Date) {
-    time = date.getTime();
-  } else {
-    throw new TypeError('Invalid type of parameter');
+    return time;
+  }
+  if (typeof date === 'number') {
+    return date;
+  }
+  if (date instanceof Date) {
+    return date.getTime();
   }
 
+  throw new TypeError('Invalid type of parameter');
+}
+
+export function formatTimePretty(date) {
+  const time = getDateTime(date);
   const now = Date.now();
   const diff = now - time;
 
@@ -83,4 +87,13 @@ export function formatTimePretty(date) {
   const yearsPlural = formatPlural(years, 'год', 'года', 'лет');
 
   return `${years} ${yearsPlural} назад`;
+}
+
+export function formatTime(date) {
+  const time = getDateTime(date);
+  const fixedDate = new Date(time);
+
+  const dateStr = fixedDate.toLocaleString([], { month: 'short', day: 'numeric' });
+  const timeStr = fixedDate.toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+  return `${dateStr} в ${timeStr}`;
 }
