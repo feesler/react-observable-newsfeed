@@ -25,6 +25,10 @@ body {
   outline: none;
 }
 
+.align-right {
+  margin-left: auto;
+}
+
 .feed {
   display: flex;
   flex-flow: column nowrap;
@@ -89,4 +93,25 @@ body {
 .post__content {
   font-size: 1.25rem;
   font-weight: normal;
+}
+
+.icon-counter {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  cursor: pointer;
+}
+
+.icon-counter svg * {
+  stroke: #888888;
+  stroke-width: 0.5;
+  fill: none;
+}
+
+.icon-counter__count {
+  margin-left: 0.5rem;
+}
+
+.icon-counter:hover svg * {
+  stroke: #727272;
 }

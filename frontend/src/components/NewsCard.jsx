@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatTimePretty } from '../utils/DateTimeUtils';
 import { decodeXML } from 'entities';
+import { ReactComponent as LikesIcon } from '../assets/likes-icon.svg';
+import { ReactComponent as CommentsIcon } from '../assets/comments-icon.svg';
+import { ReactComponent as RepostsIcon } from '../assets/reposts-icon.svg';
+import { ReactComponent as ViewsIcon } from '../assets/views-icon.svg';
+import IconCounter from './IconCounter';
 
 function NewsCard(props) {
   const { item } = props;
@@ -20,10 +25,10 @@ function NewsCard(props) {
       </div>
       <p className="post__content">{decodedContent}</p>
       <div className="post__bottom">
-        <span>Likes {item.likes.count}</span>
-        <span>Comments {item.comments.count}</span>
-        <span>Reposts {item.reposts.count}</span>
-        <span>Views {item.views.count}</span>
+        <IconCounter icon={LikesIcon} count={item.likes.count} />
+        <IconCounter icon={CommentsIcon} count={item.comments.count} />
+        <IconCounter icon={RepostsIcon} count={item.reposts.count} />
+        <IconCounter className="align-right" icon={ViewsIcon} count={item.views.count} />
       </div>
     </div>
   );
