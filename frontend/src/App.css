@@ -149,3 +149,57 @@ body {
 .icon-counter:hover svg * {
   stroke: #727272;
 }
+
+.load-more-btn {
+  margin: 0.5rem auto;
+  padding: 0.4rem 1rem;
+  background-color: #c9d9e6;
+  color: #58646f;
+  cursor: pointer;
+}
+
+.load-more-btn:hover {
+  background-color: #b9c7d3;
+  color: #58646f;
+}
+
+.loading-animation {
+  display: none;
+}
+
+.load-more-btn.loading .loading-animation {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.load-more-btn.loading .btn-title {
+  display: none;
+}
+
+@keyframes pulseicon {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+.load-more-btn.loading .circle {
+  width: 6px;
+  height: 6px;
+  background-color: #30608a;
+  border-radius: 50%;
+  animation-duration: 0.5s;
+  animation-name: pulseicon;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.load-more-btn.loading .circle:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.load-more-btn.loading .circle:nth-child(3) {
+  animation-delay: 0.2s;
+}

@@ -15,14 +15,20 @@ import { readNews, readNewsSuccess, readNewsFailure } from '../store/newsFeedSli
 
 const newsUrl = process.env.REACT_APP_NEWS_URL;
 
-export const requestNewsEpic = (action$) => action$.pipe(
+export const requestNewsEpic = (action$, state$) => action$.pipe(
   filter(o => readNews.match(o)),
-  debounceTime(100),
-  switchMap(() =>
-    ajax.getJSON(newsUrl).pipe(
+  map(o => {
+    const items = state$.value.newsFeed.items;
+    if (!items.length) {
+      return newsUrl;
+    }
+    const lastItem = items[items.length - 1];
+    return `${newsUrl}?lastSeenId=${lastItem.id}`;
+  }),
+  switchMap(o =>
+    ajax.getJSON(o).pipe(
       map(o => readNewsSuccess(o)),
-      //catchError(e => of(readNewsFailure(e))),
-      retryWhen(errors => errors.pipe(delay(1000), take(10))),
+      retryWhen(errors => errors.pipe(delay(3000))),
     )
   )
 );

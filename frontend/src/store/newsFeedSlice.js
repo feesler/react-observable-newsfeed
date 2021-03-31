@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   items: [],
+  moreAvailable: true,
   loading: false,
   error: null,
 };
@@ -19,6 +20,7 @@ const newsFeedSlice = createSlice({
       ...state,
       loading: false,
       items: [...state.items, ...action.payload],
+      moreAvailable: action.payload.length >= 5,
     }),
     readNewsFailure: (state, action) => ({
       ...state,
