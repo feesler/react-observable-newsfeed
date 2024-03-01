@@ -1,14 +1,9 @@
-import { ofType } from 'redux-observable';
 import { ajax } from 'rxjs/ajax';
-import { of } from 'rxjs';
 import {
   map,
-  debounceTime,
   switchMap,
-  catchError,
   retryWhen,
   delay,
-  take,
   filter,
 } from 'rxjs/operators';
 import { readNews, readNewsSuccess, readNewsFailure } from '../store/newsFeedSlice';
