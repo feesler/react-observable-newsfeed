@@ -1,6 +1,6 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import newsFeedReducer from './newsFeedSlice';
-import { requestNewsEpic } from '../epics';
+import newsFeedReducer from './newsFeedSlice.js';
+import { requestNewsEpic } from '../epics/index.js';
 import { configureStore } from '@reduxjs/toolkit';
 
 const epic = combineEpics(

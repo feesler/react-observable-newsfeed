@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteBase /netology/12/react-observable-newsfeed/api/
+RewriteBase /projects/netology/12/react-observable-newsfeed/api/
 
 RewriteRule ^(.*)$ news.php?route=$1 [L,QSA]

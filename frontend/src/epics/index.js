@@ -6,7 +6,7 @@ import {
   delay,
   filter,
 } from 'rxjs/operators';
-import { readNews, readNewsSuccess, readNewsFailure } from '../store/newsFeedSlice';
+import { readNews, readNewsSuccess, readNewsFailure } from '../store/newsFeedSlice.js';
 
 const newsUrl = process.env.REACT_APP_NEWS_URL;
 
